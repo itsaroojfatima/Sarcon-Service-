@@ -1,33 +1,31 @@
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Onboarding() {
   const router = useRouter();
+  const [role, setRole] = useState("user");
 
   return (
     <View style={styles.main}>
       <Text style={styles.heading}>Are you!</Text>
       <Text style={styles.subHeading}>
-        Please Slect your role for this app.
+        Please Select your role for this app.
       </Text>
 
       <View style={{ marginBottom: 20 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginBottom: 10,
-          }}
+        <TouchableOpacity
+          style={styles.radioContainer}
+          onPress={() => setRole("user")}
         >
           <View style={styles.radio}>
-            <View style={styles.radioBg} />
+            {role === "user" && <View style={styles.radioBg} />}
           </View>
           <Text style={styles.radioText}>User Side</Text>
-        </View>
+        </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.wrapper}>
+        <TouchableOpacity onPress={() => setRole("user")}>
+          <View style={role === "user" ? styles.wrapperActive : styles.wrapper}>
             <Image
               source={require("@/assets/images/boarding.png")}
               style={styles.image}
@@ -37,20 +35,22 @@ export default function Onboarding() {
       </View>
 
       <Text style={styles.or}>-Or-</Text>
-      <View style={{ marginBottom: 20 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginBottom: 10,
-          }}
-        >
-          <View style={styles.radio}></View>
-          <Text style={styles.radioText}>Service Provider</Text>
-        </View>
 
-        <TouchableOpacity>
-          <View style={{ borderRadius: 24, overflow: "hidden" }}>
+      <View style={{ marginBottom: 20 }}>
+        <TouchableOpacity
+          style={styles.radioContainer}
+          onPress={() => setRole("provider")}
+        >
+          <View style={styles.radio}>
+            {role === "provider" && <View style={styles.radioBg} />}
+          </View>
+          <Text style={styles.radioText}>Service Provider</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => setRole("provider")}>
+          <View
+            style={role === "provider" ? styles.wrapperActive : styles.wrapper}
+          >
             <Image
               source={require("@/assets/images/onboarding 2.png")}
               style={styles.image}
@@ -58,7 +58,10 @@ export default function Onboarding() {
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button}></TouchableOpacity>
+
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>→</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -68,11 +71,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingHorizontal: 25,
+    paddingTop: 60,
   },
   heading: {
     fontSize: 32,
     fontWeight: "bold",
-    marginTop: 180,
     color: "#1E1E1E",
   },
   subHeading: {
@@ -80,6 +83,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     marginBottom: 30,
+  },
+  radioContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
   },
   radioText: {
     fontSize: 15,
@@ -96,27 +104,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: 10,
   },
-  wrapper: {
-    borderWidth: 2.5,
-    borderColor: "#0474ED",
-    borderRadius: 24,
-    overflow: "hidden",
-  },
   radioBg: {
     backgroundColor: "#0474ED",
     height: 10,
     width: 10,
     borderRadius: 20,
   },
+  wrapper: {
+    borderRadius: 24,
+    overflow: "hidden",
+    borderWidth: 2.5,
+    borderColor: "transparent",
+  },
+  wrapperActive: {
+    borderWidth: 2.5,
+    borderColor: "#0474ED",
+    borderRadius: 24,
+    overflow: "hidden",
+  },
   image: {
     width: "100%",
     height: 155,
-    overflow: "hidden",
   },
   or: {
     textAlign: "center",
     color: "#B0AAAA",
-    marginVertical: 15,
+    marginVertical: 5,
   },
   button: {
     width: 120,
@@ -125,5 +138,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignSelf: "flex-end",
     marginTop: 25,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
   },
 });
