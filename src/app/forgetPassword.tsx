@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 export default function ForgetPassword() {
-  const router = useRouter;
+  const router = useRouter();
   const [isActive, setIsActive] = useState(true);
 
   return (
@@ -51,8 +51,7 @@ export default function ForgetPassword() {
           style={styles.button}
           activeOpacity={0.8}
           onPress={() => {
-            alert("Reset link sent to your email!");
-            router.push("/signin");
+            router.push("/changePassword");
           }}
         >
           <Text style={styles.buttonText}>Submit</Text>
