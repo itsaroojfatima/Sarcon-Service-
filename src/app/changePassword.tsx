@@ -144,13 +144,11 @@ export default function ChangePassword() {
           </Text>
         </View>
 
-        {/* Change Password Button (Touchable) */}
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.8}
           onPress={() => {
-            alert("Password Changed Successfully!");
-            router.push("/signin"); // Password change hone ke baad wapas sign in screen par bhejne ke liye
+            router.replace("/sign-in"); // Password change hone ke baad wapas sign in screen par bhejne ke liye
           }}
         >
           <Text style={styles.buttonText}>Change password</Text>
