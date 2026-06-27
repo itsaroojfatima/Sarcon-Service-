@@ -20,7 +20,7 @@ export default function EnterOTP() {
   const pin3Ref = useRef(null);
   const pin4Ref = useRef(null);
 
-  const handleOtpChange = (text, index, nextRef) => {
+  const handleOtpChange = (text: string, index: number, nextRef: any) => {
     const newOtp = [...otp];
     newOtp[index] = text;
     setOtp(newOtp);
@@ -103,7 +103,7 @@ export default function EnterOTP() {
           activeOpacity={0.8}
           onPress={() => {
             alert("OTP Verified Successfully!");
-            router.push("/change-password");
+            router.push("/changePassword");
           }}
         >
           <Text style={styles.buttonText}>Next</Text>
