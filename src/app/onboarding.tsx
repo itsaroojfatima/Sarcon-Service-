@@ -59,7 +59,10 @@ export default function Onboarding() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push("/sign in")}
+      >
         <Text style={styles.buttonText}>→</Text>
       </TouchableOpacity>
     </View>
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "bold",
     color: "#1E1E1E",
+    marginTop: 120,
   },
   subHeading: {
     color: "#1E1E1E",
