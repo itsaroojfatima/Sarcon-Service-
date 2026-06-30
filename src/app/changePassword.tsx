@@ -1,3 +1,5 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -47,7 +49,7 @@ export default function ChangePassword() {
               { color: activeField === "oldPassword" ? "#0474ED" : "#8A8A8A" },
             ]}
           >
-            🔒
+            <Ionicons name="lock-open-outline" size={24} color="black" />
           </Text>
           <TextInput
             placeholder="Enter Old Password"
@@ -64,7 +66,7 @@ export default function ChangePassword() {
               { color: activeField === "oldPassword" ? "#0474ED" : "#8A8A8A" },
             ]}
           >
-            👁
+            <SimpleLineIcons name="eye" size={24} color="black" />
           </Text>
         </View>
 
@@ -82,7 +84,7 @@ export default function ChangePassword() {
               { color: activeField === "newPassword" ? "#0474ED" : "#8A8A8A" },
             ]}
           >
-            🔒
+            <Ionicons name="lock-open-outline" size={24} color="black" />
           </Text>
           <TextInput
             placeholder="Enter New Password"
@@ -99,7 +101,7 @@ export default function ChangePassword() {
               { color: activeField === "newPassword" ? "#0474ED" : "#8A8A8A" },
             ]}
           >
-            👁
+            <SimpleLineIcons name="eye" size={24} color="black" />
           </Text>
         </View>
 
@@ -120,7 +122,7 @@ export default function ChangePassword() {
               },
             ]}
           >
-            🔒
+            <Ionicons name="lock-open-outline" size={24} color="black" />
           </Text>
           <TextInput
             placeholder="Confirm Password"
@@ -140,7 +142,7 @@ export default function ChangePassword() {
               },
             ]}
           >
-            👁
+            <SimpleLineIcons name="eye" size={24} color="black" />
           </Text>
         </View>
 
@@ -179,11 +181,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#1E1E1E",
     marginBottom: 5,
+    marginTop: 15,
   },
   subHeading: {
     fontSize: 14,
     color: "#8A8A8A",
     marginBottom: 30,
+    marginTop: 5,
   },
   // Active border style (Blue border aur light background)
   inputBoxActive: {
@@ -196,6 +200,7 @@ const styles = StyleSheet.create({
     height: 54,
     paddingHorizontal: 20,
     marginBottom: 16,
+    marginTop: 30,
   },
   // Normal state style (Grey background)
   inputBoxNormal: {
@@ -228,7 +233,7 @@ const styles = StyleSheet.create({
     height: 54,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: 30,
   },
   buttonText: {
     color: "white",
