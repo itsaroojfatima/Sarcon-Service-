@@ -1,3 +1,7 @@
+import Feather from "@expo/vector-icons/Feather";
+import Fontisto from "@expo/vector-icons/Fontisto";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -13,24 +17,21 @@ import {
 
 export default function SignUp() {
   const router = useRouter();
-
-  // Kaun sa field is waqt active hai, usay track karne ke liye state
-  const [activeField, setActiveField] = useState("name");
+  const [activeField, setActiveField] = useState("");
 
   return (
     <ImageBackground
-      source={require("@/assets/images/signin.png")} // Background image jesa pehle thi
+      source={require("@/assets/images/signin.png")}
       style={styles.main}
       resizeMode="cover"
     >
-      {/* ScrollView lagaya taake saare inputs screen par fit aa sakein aur scroll ho sakein */}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContainer}
       >
-        {/* Top Illustration Vector (Sign Up Mobile Phone Image) */}
+        {/* Top Illustration Vector */}
         <Image
-          source={require("@/assets/images/group.png")} // Aap iski jagah apni sign up wali image name change kar sakti hain
+          source={require("@/assets/images/Group2.png")}
           style={styles.image}
         />
 
@@ -38,30 +39,10 @@ export default function SignUp() {
           <Text style={styles.heading}>Sign Up</Text>
           <Text style={styles.subHeading}>Please Sign Up to Join Us</Text>
 
-          {/* ------- 1. Name Input Field ------- */}
-          <View
-            style={
-              activeField === "name"
-                ? styles.inputBoxActive
-                : styles.inputBoxNormal
-            }
-          >
-            <Text
-              style={[
-                styles.textIcon,
-                { color: activeField === "name" ? "#0474ED" : "#8A8A8A" },
-              ]}
-            >
-              👤
-            </Text>
-            <TextInput
-              placeholder="Name"
-              placeholderTextColor={
-                activeField === "name" ? "#0474ED" : "#8A8A8A"
-              }
-              style={styles.input}
-              onFocus={() => setActiveField("name")}
-            />
+          {/* ------- 1. Only Blue Icon and Text ------- */}
+          <View style={styles.simpleBlueRow}>
+            <Feather name="user" size={20} color="#0474ED" />
+            <Text style={styles.blueText}>Name</Text>
           </View>
 
           {/* ------- 2. Email Input Field ------- */}
@@ -72,14 +53,12 @@ export default function SignUp() {
                 : styles.inputBoxNormal
             }
           >
-            <Text
-              style={[
-                styles.textIcon,
-                { color: activeField === "email" ? "#0474ED" : "#8A8A8A" },
-              ]}
-            >
-              ✉
-            </Text>
+            <Fontisto
+              name="email"
+              size={20}
+              color={activeField === "email" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIcon}
+            />
             <TextInput
               placeholder="Email"
               placeholderTextColor={
@@ -87,6 +66,7 @@ export default function SignUp() {
               }
               style={styles.input}
               onFocus={() => setActiveField("email")}
+              onBlur={() => setActiveField("")}
             />
           </View>
 
@@ -98,14 +78,12 @@ export default function SignUp() {
                 : styles.inputBoxNormal
             }
           >
-            <Text
-              style={[
-                styles.textIcon,
-                { color: activeField === "phone" ? "#0474ED" : "#8A8A8A" },
-              ]}
-            >
-              📞
-            </Text>
+            <Feather
+              name="phone"
+              size={20}
+              color={activeField === "phone" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIcon}
+            />
             <TextInput
               placeholder="Phone"
               placeholderTextColor={
@@ -114,6 +92,7 @@ export default function SignUp() {
               keyboardType="phone-pad"
               style={styles.input}
               onFocus={() => setActiveField("phone")}
+              onBlur={() => setActiveField("")}
             />
           </View>
 
@@ -125,14 +104,12 @@ export default function SignUp() {
                 : styles.inputBoxNormal
             }
           >
-            <Text
-              style={[
-                styles.textIcon,
-                { color: activeField === "password" ? "#0474ED" : "#8A8A8A" },
-              ]}
-            >
-              🔒
-            </Text>
+            <Ionicons
+              name="lock-open-outline"
+              size={20}
+              color={activeField === "password" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIcon}
+            />
             <TextInput
               placeholder="Password"
               placeholderTextColor={
@@ -141,15 +118,14 @@ export default function SignUp() {
               secureTextEntry={true}
               style={styles.input}
               onFocus={() => setActiveField("password")}
+              onBlur={() => setActiveField("")}
             />
-            <Text
-              style={[
-                styles.textIconRight,
-                { color: activeField === "password" ? "#0474ED" : "#8A8A8A" },
-              ]}
-            >
-              👁
-            </Text>
+            <SimpleLineIcons
+              name="eye"
+              size={18}
+              color={activeField === "password" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIconRight}
+            />
           </View>
 
           {/* ------- 5. Confirm Password Input Field ------- */}
@@ -160,17 +136,12 @@ export default function SignUp() {
                 : styles.inputBoxNormal
             }
           >
-            <Text
-              style={[
-                styles.textIcon,
-                {
-                  color:
-                    activeField === "confirmPassword" ? "#0474ED" : "#8A8A8A",
-                },
-              ]}
-            >
-              🔒
-            </Text>
+            <Ionicons
+              name="lock-open-outline"
+              size={20}
+              color={activeField === "confirmPassword" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIcon}
+            />
             <TextInput
               placeholder="Confirm Password"
               placeholderTextColor={
@@ -179,18 +150,14 @@ export default function SignUp() {
               secureTextEntry={true}
               style={styles.input}
               onFocus={() => setActiveField("confirmPassword")}
+              onBlur={() => setActiveField("")}
             />
-            <Text
-              style={[
-                styles.textIconRight,
-                {
-                  color:
-                    activeField === "confirmPassword" ? "#0474ED" : "#8A8A8A",
-                },
-              ]}
-            >
-              👁
-            </Text>
+            <SimpleLineIcons
+              name="eye"
+              size={18}
+              color={activeField === "confirmPassword" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIconRight}
+            />
           </View>
 
           {/* ------- 6. Address Input Field ------- */}
@@ -201,14 +168,12 @@ export default function SignUp() {
                 : styles.inputBoxNormal
             }
           >
-            <Text
-              style={[
-                styles.textIcon,
-                { color: activeField === "address" ? "#0474ED" : "#8A8A8A" },
-              ]}
-            >
-              📍
-            </Text>
+            <Ionicons
+              name="location-outline"
+              size={20}
+              color={activeField === "address" ? "#0474ED" : "#8A8A8A"}
+              style={styles.vectorIcon}
+            />
             <TextInput
               placeholder="Address"
               placeholderTextColor={
@@ -216,20 +181,28 @@ export default function SignUp() {
               }
               style={styles.input}
               onFocus={() => setActiveField("address")}
+              onBlur={() => setActiveField("")}
             />
           </View>
 
-          {/* Terms & Conditions Text */}
-          <Text style={styles.termsText}>
-            I agree to <Text style={styles.termsBold}>Terms</Text> and{" "}
-            <Text style={styles.termsBold}>conditions</Text> & Privacy.
-          </Text>
+          {/* Terms & Conditions Row - Explicit row configuration to prevent splitting */}
+          <View style={styles.termsContainer}>
+            <Text
+              style={styles.termsText}
+              numberOfLines={1}
+              adjustsFontSizeToFit={true}
+              minimumFontScale={0.5}
+            >
+              I agree to <Text style={styles.termsBold}>Terms</Text> and{" "}
+              <Text style={styles.termsBold}>conditions</Text> & Privacy.
+            </Text>
+          </View>
 
           {/* Sign Up Button */}
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.8}
-            onPress={() => alert("Registration Successful!")}
+            onPress={() => alert("/submit")}
           >
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
@@ -280,7 +253,19 @@ const styles = StyleSheet.create({
     color: "#8A8A8A",
     marginBottom: 25,
   },
-  // Jab input focus ho jaye (Border active blue)
+  simpleBlueRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    height: 35,
+    marginBottom: 14,
+  },
+  blueText: {
+    fontSize: 15,
+    color: "#0474ED",
+    marginLeft: 14,
+    fontWeight: "500",
+  },
   inputBoxActive: {
     flexDirection: "row",
     alignItems: "center",
@@ -292,7 +277,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 14,
   },
-  // Normal state (Grey style)
   inputBoxNormal: {
     flexDirection: "row",
     alignItems: "center",
@@ -304,12 +288,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 14,
   },
-  textIcon: {
-    fontSize: 16,
-    marginRight: 10,
+  vectorIcon: {
+    marginRight: 14,
   },
-  textIconRight: {
-    fontSize: 16,
+  vectorIconRight: {
     marginLeft: 10,
   },
   input: {
@@ -317,12 +299,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#1E1E1E",
   },
+  // Row structure to enforce single line display
+  termsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginTop: 12,
+    marginBottom: 20,
+    flexWrap: "nowrap",
+  },
   termsText: {
     fontSize: 12,
     color: "#8A8A8A",
     textAlign: "center",
-    marginTop: 5,
-    marginBottom: 25,
   },
   termsBold: {
     fontWeight: "600",
