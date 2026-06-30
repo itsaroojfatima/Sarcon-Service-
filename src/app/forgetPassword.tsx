@@ -1,3 +1,4 @@
+import Fontisto from "@expo/vector-icons/Fontisto";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -12,7 +13,8 @@ import {
 
 export default function ForgetPassword() {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(true);
+  // Initially false rakha hai taake start mein normal look aaye, focus par active ho
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <ImageBackground
@@ -32,12 +34,14 @@ export default function ForgetPassword() {
         </Text>
 
         <View style={isActive ? styles.inputBoxActive : styles.inputBoxNormal}>
-          <Text
-            style={[
-              styles.textIcon,
-              { color: isActive ? "#0474ED" : "#8A8A8A" },
-            ]}
-          ></Text>
+          {/* Email Icon: Space badhane ke liye 'styles.emailIcon' add kiya hai aur color dynamic kar diya hai */}
+          <Fontisto
+            name="email"
+            size={20}
+            color={isActive ? "#0474ED" : "#8A8A8A"}
+            style={styles.emailIcon}
+          />
+
           <TextInput
             placeholder="Email Address"
             placeholderTextColor={isActive ? "#0474ED" : "#8A8A8A"}
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 220,
     resizeMode: "contain",
-    marginTop: 30,
+    marginTop: 70,
     marginBottom: 20,
   },
   container: {
@@ -111,9 +115,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 40,
   },
-  textIcon: {
-    fontSize: 16,
-    marginRight: 12,
+  // Is styling se icon aur text ke beech perfect space ban jayegi
+  emailIcon: {
+    marginRight: 14,
   },
   input: {
     flex: 1,
